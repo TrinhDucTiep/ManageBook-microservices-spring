@@ -1,7 +1,11 @@
 package com.tiep.bookservice.command.aggregate;
 
 import com.tiep.bookservice.command.command.CreateBookCommand;
+import com.tiep.bookservice.command.command.DeleteBookCommand;
+import com.tiep.bookservice.command.command.UpdateBookCommand;
 import com.tiep.bookservice.command.event.BookCreateEvent;
+import com.tiep.bookservice.command.event.BookDeleteEvent;
+import com.tiep.bookservice.command.event.BookUpdateEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -27,6 +31,20 @@ public class BookAggregate {
         AggregateLifecycle.apply(bookCreateEvent); // phát đi cái event này
     }
 
+    @CommandHandler
+    public void handle(UpdateBookCommand updateBookCommand) {
+        BookUpdateEvent bookUpdateEvent = new BookUpdateEvent();
+        BeanUtils.copyProperties(updateBookCommand, bookUpdateEvent);
+        AggregateLifecycle.apply(bookUpdateEvent);
+    }
+
+    @CommandHandler
+    public void handle(DeleteBookCommand deleteBookCommand) {
+        BookDeleteEvent bookDeleteEvent = new BookDeleteEvent();
+        BeanUtils.copyProperties(deleteBookCommand, bookDeleteEvent);
+        AggregateLifecycle.apply(bookDeleteEvent);
+    }
+
     @EventSourcingHandler
     // Sau khi nhảy vào đây xong thì nó sẽ tìm đến @EventHandler
     public void on(BookCreateEvent event) {
@@ -34,5 +52,18 @@ public class BookAggregate {
         this.name = event.getName();
         this.author = event.getAuthor();
         this.isReady = event.isReady();
+    }
+
+    @EventSourcingHandler
+    public void on(BookUpdateEvent event) {
+        this.bookId = event.getBookId();
+        this.name = event.getName();
+        this.author = event.getAuthor();
+        this.isReady = event.isReady();
+    }
+
+    @EventSourcingHandler
+    public void on(BookDeleteEvent event) {
+        this.bookId = event.getBookId();
     }
 }

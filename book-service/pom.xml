@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.6.7</version>
+        <relativePath/> <!-- phải downgrade từ 3.1.3 xuống 2.6.7 để dùng được axonserver, mà bản này lại phải hạ H2 xuống, hic: hận cuộc đời mãi mới sửa được :((((((((-->
     </parent>
     <groupId>com.tiep</groupId>
     <artifactId>book-service</artifactId>
@@ -14,10 +14,15 @@
     <name>book-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>17</java.version>
-        <spring-cloud.version>2022.0.4</spring-cloud.version>
+        <java.version>11</java.version>
+        <spring-cloud.version>2021.0.2</spring-cloud.version>
     </properties>
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.tanthanh</groupId>-->
+<!--            <artifactId>commonservice</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -26,6 +31,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -44,6 +57,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>2.0.202</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -51,7 +65,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
@@ -67,6 +80,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -86,6 +100,19 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.jacoco</groupId>-->
+<!--                <artifactId>jacoco-maven-plugin</artifactId>-->
+<!--                <version>0.8.8</version>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>**/model/**</exclude>-->
+<!--                        <exclude>**/configuration/**</exclude>-->
+<!--                        <exclude>**/BookserviceApplication.*</exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--                <executions><execution><id>default</id><goals><goal>prepare-agent</goal></goals></execution><execution><id>default-report</id><phase>prepare-package</phase><goals><goal>report</goal></goals></execution></executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

@@ -34,7 +34,6 @@ public class BookCommandController {
 
     @PutMapping
     public String updateBook(@RequestBody BookRequestModel model) {
-        System.out.println(model.getIsReady());
         UpdateBookCommand command = new UpdateBookCommand(model.getBookId(), model.getName(), model.getAuthor(), model.getIsReady());
         commandGateway.sendAndWait(command);
 

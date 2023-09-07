@@ -36,7 +36,6 @@ public class BookProjection {
             BeanUtils.copyProperties(book, model);
             listModel.add(model);
         });
-
         return listModel;
     }
 }

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa67b75-08f6-4108-aa70-7c90e5b96a9d" name="Default Changelist" comment="" />
+    <list default="true" id="caa67b75-08f6-4108-aa70-7c90e5b96a9d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +29,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/discovery-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RunManager">
@@ -48,6 +51,10 @@
       <option name="presentableId" value="Default" />
       <updated>1693648554279</updated>
       <workItem from="1693648555608" duration="910000" />
+      <workItem from="1693658658601" duration="40000" />
+      <workItem from="1693658723095" duration="256000" />
+      <workItem from="1693659382881" duration="96000" />
+      <workItem from="1693659548412" duration="389000" />
     </task>
     <servers />
   </component>

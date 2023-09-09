@@ -1,10 +1,10 @@
-package com.tiep.apigateway;
+package com.tiep.notificationservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApigatewayApplicationTests {
+class NotificationServiceApplicationTests {
 
     @Test
     void contextLoads() {

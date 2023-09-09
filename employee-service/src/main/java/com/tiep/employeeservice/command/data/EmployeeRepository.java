@@ -1,2 +1,7 @@
-package com.tiep.employeeservice.command.data;public interface EmployeeRepository {
+package com.tiep.employeeservice.command.data;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployeeRepository extends JpaRepository<Employee, String> {
+
 }

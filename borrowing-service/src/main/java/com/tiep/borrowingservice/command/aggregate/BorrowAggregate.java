@@ -1,7 +1,9 @@
 package com.tiep.borrowingservice.command.aggregate;
 
 import com.tiep.borrowingservice.command.command.CreateBorrowCommand;
+import com.tiep.borrowingservice.command.command.DeleteBorrowCommand;
 import com.tiep.borrowingservice.command.event.BorrowCreatedEvent;
+import com.tiep.borrowingservice.command.event.BorrowDeletedEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -29,11 +31,23 @@ public class BorrowAggregate {
         AggregateLifecycle.apply(event);
     }
 
+    @CommandHandler
+    public void handle(DeleteBorrowCommand command) {
+        BorrowDeletedEvent event = new BorrowDeletedEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+
     @EventSourcingHandler
     public void on(BorrowCreatedEvent event) {
         this.bookId = event.getBookId();
         this.borrowingDate = event.getBorrowingDate();
         this.employeeId = event.getEmployeeId();
+        this.id = event.getId();
+    }
+
+    @EventSourcingHandler
+    public void on(BorrowDeletedEvent event) {
         this.id = event.getId();
     }
 

@@ -81,6 +81,11 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>common-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -1,5 +1,7 @@
 package com.tiep.bookservice.command.aggregate;
 
+import com.example.commonservice.command.UpdateStatusBookCommand;
+import com.example.commonservice.event.UpdateBookStatusEvent;
 import com.tiep.bookservice.command.command.CreateBookCommand;
 import com.tiep.bookservice.command.command.DeleteBookCommand;
 import com.tiep.bookservice.command.command.UpdateBookCommand;
@@ -45,6 +47,13 @@ public class BookAggregate {
         AggregateLifecycle.apply(bookDeleteEvent);
     }
 
+    @CommandHandler
+    public void handle(UpdateStatusBookCommand command) {
+        UpdateBookStatusEvent event = new UpdateBookStatusEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+
     @EventSourcingHandler
     // Sau khi nhảy vào đây xong thì nó sẽ tìm đến @EventHandler
     public void on(BookCreateEvent event) {
@@ -65,5 +74,11 @@ public class BookAggregate {
     @EventSourcingHandler
     public void on(BookDeleteEvent event) {
         this.bookId = event.getBookId();
+    }
+
+    @EventSourcingHandler
+    public void on(UpdateBookStatusEvent event) {
+        this.bookId = event.getBookId();
+        this.isReady = event.getIsReady();
     }
 }

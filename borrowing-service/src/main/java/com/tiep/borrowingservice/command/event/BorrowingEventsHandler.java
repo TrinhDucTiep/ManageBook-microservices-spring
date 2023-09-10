@@ -18,4 +18,13 @@ public class BorrowingEventsHandler {
         BeanUtils.copyProperties(event, borrowing);
         borrowingRepository.save(borrowing);
     }
+
+    @EventHandler
+    public void on(BorrowDeletedEvent event) {
+        if (borrowingRepository.findById(event.getId()).isPresent()) {
+            borrowingRepository.deleteById(event.getId());
+        } else {
+            return;
+        }
+    }
 }

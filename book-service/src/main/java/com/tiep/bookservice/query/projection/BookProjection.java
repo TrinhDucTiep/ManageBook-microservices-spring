@@ -1,5 +1,7 @@
 package com.tiep.bookservice.query.projection;
 
+import com.example.commonservice.model.BookResponseCommonModel;
+import com.example.commonservice.query.GetDetailsBookQuery;
 import com.tiep.bookservice.command.data.Book;
 import com.tiep.bookservice.command.data.BookRepository;
 import com.tiep.bookservice.query.model.BookResponseModel;
@@ -37,5 +39,13 @@ public class BookProjection {
             listModel.add(model);
         });
         return listModel;
+    }
+
+    @QueryHandler
+    public BookResponseCommonModel handle(GetDetailsBookQuery query) {
+        BookResponseCommonModel model = new BookResponseCommonModel();
+        Book book = bookRepository.getById(query.getBookId());
+        BeanUtils.copyProperties(book, model);
+        return model;
     }
 }

@@ -1,5 +1,6 @@
 package com.tiep.bookservice.command.event;
 
+import com.example.commonservice.event.UpdateBookStatusEvent;
 import com.tiep.bookservice.command.data.Book;
 import com.tiep.bookservice.command.data.BookRepository;
 import org.axonframework.eventhandling.EventHandler;
@@ -32,5 +33,11 @@ public class BookEventsHandler {
     @EventHandler
     public void on(BookDeleteEvent event) {
         bookRepository.deleteById(event.getBookId());
+    }
+
+    @EventHandler
+    public void on(UpdateBookStatusEvent event) {
+        Book book = bookRepository.getById(event.getBookId());
+        book.setReady(event.getIsReady());
     }
 }
